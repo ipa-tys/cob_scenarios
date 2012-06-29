@@ -16,11 +16,10 @@ class SM1(smach.StateMachine):
         smach.StateMachine.__init__(self,outcomes=['ended','failed'])
         with self:
             #  [-0.378, -6.839, 1.476]
-            #smach.StateMachine.add('APPROACH_POSE',ApproachPose([-0.2,-3.9,1.4]),transitions={'reached':'WAITFOROPENDOOR', 'not_reached':'ended', 'failed':'failed'})
-            smach.StateMachine.add('APPROACH_POSE',ApproachPose('elevator_out'),transitions={'reached':'WAITFOROPENDOOR', 'not_reached':'ended', 'failed':'failed'})
-            smach.StateMachine.add('WAITFOROPENDOOR',WaitForSingleElevatorDoor(rospy.Duration(15)),transitions={'door_open':'APPROACH_ENDPOSE', 'door_closed':'ended', 'failed':'failed'})
-            #smach.StateMachine.add('WAITFOROPENDOOR',WaitForSingleElevatorDoor(rospy.Duration(15)),transitions={'door_open':'ended', 'door_closed':'ended', 'failed':'failed'})
-            smach.StateMachine.add('APPROACH_ENDPOSE',ApproachPose(),transitions={'reached':'ended', 'not_reached':'ended', 'failed':'failed'})
+            # smach.StateMachine.add('APPROACH_POSE',ApproachPose([-0.2,-3.9,1.4]),transitions={'reached':'WAITFOROPENDOOR', 'not_reached':'ended', 'failed':'failed'})
+            #smach.StateMachine.add('WAITFOROPENDOOR',WaitForSingleElevatorDoor(rospy.Duration(15)),transitions={'door_open':'APPROACH_ENDPOSE', 'door_closed':'ended', 'failed':'failed'})
+            smach.StateMachine.add('WAITFOROPENDOOR',WaitForSingleElevatorDoor(rospy.Duration(15)),transitions={'door_open':'ended', 'door_closed':'ended', 'failed':'failed'})
+            #smach.StateMachine.add('APPROACH_ENDPOSE',ApproachPose(),transitions={'reached':'ended', 'not_reached':'ended', 'failed':'failed'})
 
 def main():
     rospy.init_node('AUTOMATICA2012')
